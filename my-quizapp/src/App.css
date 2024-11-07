@@ -1,3 +1,95 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+.header {
+    font-size: 35px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    background: linear-gradient(90deg, #5fff8c, #feb47b);
+    /* Apply gradient background */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Make text color transparent to show the gradient */
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+.content:hover{
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #cdded1, #f4dece);
+    color: #5fff8c;
+}
+.content i{
+    color: #5fff8c;
+}
+.content i:hover{
+    color: white;
+}
+.title {
+    color: green;
+    font-size: 18px;
+    font-family: 'Times New Roman';
+    font-weight: 500;
+}
+.button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: #28a745;
+    background-color: #ffffff;
+    border: 2px solid #28a745;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.4s ease;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #5fff8c, #feb47b);
+    transition: width 0.4s ease;
+    z-index: 0;
+}
+
+.button:hover::before {
+    width: 100%;
+}
+
+.button:hover {
+    color: #ffffff;
+}
+
+.button span {
+    position: relative;
+    z-index: 1;
+}
