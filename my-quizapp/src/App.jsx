@@ -1,7 +1,34 @@
 import './App.css';
 import quizImage from '../src/img/Quiz.jpg';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [allquestion, setallquestion] = useState([]);
+  const [bookq, setbookq] = useState(0);
+  
+  const url = 'https://opentdb.com/api.php?amount=10&category=28&difficulty=medium&type=multiple';
+  
+
+  
+  async function fetchbook() {
+    try {
+      const bookurl = await fetch(url);
+    
+      const data = await bookurl.json();
+      setallquestion(data.results);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  useEffect(() => {
+    fetchbook();
+  }, []);
+
+  // Confirm that allquestion updates by logging it after it's set
+ 
+
   return (<section className='bg-slate-100'>
 <div
   className="w-[80vw] h-[50vh] border border-blue-300  mx-auto my-0"
@@ -18,7 +45,7 @@ function App() {
   className="w-[80vw] h-[50vh] border-blue-300 shadow-md border mt-5 mx-auto my-0 rounded-xl">
 
 <h1 className='text-lg font-semibold text-stone-950 text-center my-4'>Quiz Category
-  <div><span class="inline-block h-1 w-28 rounded bg-indigo-500  mb-4 text-center"></span></div>
+  <div><span class="inline-block h-1 w-28 rounded bg-indigo-500   text-center"></span></div>
 </h1>
 
 <section class="text-gray-600 body-font">
@@ -34,7 +61,9 @@ function App() {
           />
           
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HOLDEN CAULFIELD</h2>
-          <p class="text-gray-500">Senior Product Designer</p>
+          <Button as="a" variant="primary">
+    Start Quiz
+  </Button>
         </div>
       </div>
      
@@ -47,7 +76,9 @@ function App() {
           />
         
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">ALPER KAMU</h2>
-          <p class="text-gray-500">UI Developer</p>
+          <Button as="a" variant="primary">
+    Start Quiz
+  </Button>
         </div>
       </div>
      
@@ -60,7 +91,7 @@ function App() {
           />
          
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HENRY LETHAM</h2>
-          <p class="text-gray-500">CTO</p>
+          <Button variant="primary">Primary</Button>{' '}
         </div>
       </div>
     </div>
@@ -76,8 +107,6 @@ function App() {
   <div><span class="inline-block h-1 w-28 rounded bg-indigo-500  mb-4 text-center"></span></div>
 </h1>
 </div>
-
-
 
 
   </section>
