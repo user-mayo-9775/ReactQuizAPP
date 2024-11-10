@@ -6,6 +6,7 @@ function Questions() {
   const [correct, setcorrect] = useState(null); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
+  const [answered , setanswered] = useState(false)
 
   const url = 'https://opentdb.com/api.php?amount=10&category=28&difficulty=medium&type=multiple';
 
@@ -33,6 +34,22 @@ function Questions() {
   const incorrect = allquestion.map((incorrect) => incorrect.incorrect_answers);
 
   console.log("All incorrect questions are here:", incorrect);
+  // function checkanser (e) {
+  //       if (answered) return;
+  //       const value = e.target.textContent;
+  //       const isCorrect = allquestion[count].correct_answer === value;
+  //       console.log("You clicked value is here", value);
+  //       if (isCorrect) {
+  //         settrueanswer((prev) => prev + 1) 
+  //       }else{
+  //         setfalseanswer((prev) => prev +1)
+  //       }
+  //       setanswered(true)
+  // }
+  //   const nextquestion =() => {
+  //     setcount((prev) => prev + 1)
+  //     setanswered(false)
+  //   }
 
   function checkanser(e) {
     let value = e.target.textContent;
@@ -62,8 +79,8 @@ function Questions() {
           <div>Correct{trueanswer}</div>
           <div>Wrong{falseanswer}</div>
           <div>{bookq[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
           <div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
+          <div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
           <div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
           <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
 

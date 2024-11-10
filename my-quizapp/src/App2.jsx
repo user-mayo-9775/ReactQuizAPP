@@ -128,4 +128,4 @@ function RecentActivity() {
   );
 }
 
-export default App;
+export default App2;
