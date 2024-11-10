@@ -41,17 +41,17 @@ function SportQuestions() {
 if(correct){
   if (isCorrect) {
     setcorrect(false);
-    settrueanswer((prev) => prev + 1);
+    settrueanswer(trueanswer+ 1);
   } else {
     setcorrect(false);
-    setfalseanswer((prev) => prev + 1);
+    setfalseanswer(falseanswer + 1);
   }
 }
 }
  
   function nextclick(){
     setcorrect(true)
-    setcount((prev) => prev + 1)
+    setcount(count + 1)
   }
 
   return (

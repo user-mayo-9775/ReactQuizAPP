@@ -14,10 +14,10 @@ function EntertainmentQuestions() {
   async function fetchbook() {
     
       const bookurl = await fetch(url);
-      setload(false)
+      setload(true)
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
-      setload(true)
+      setload(false)
       if (data.results) {
         setallquestion(data.results);
       } else {
@@ -29,6 +29,9 @@ function EntertainmentQuestions() {
   useEffect(() => {
     fetchbook();
   }, []);
+  if(load){
+    return <BasicExample></BasicExample>
+  }
 
   const bookq = allquestion.map((item) => item.question);
   const correctanswer = allquestion.map((correct) => correct.correct_answer);
@@ -45,22 +48,22 @@ function EntertainmentQuestions() {
 if(correct){
   if (isCorrect) {
     setcorrect(false);
-    settrueanswer((prev) => prev + 1);
+    settrueanswer(trueanswer+ 1);
   } else {
     setcorrect(false);
-    setfalseanswer((prev) => prev + 1);
+    setfalseanswer(falseanswer + 1);
   }
 }
 }
  
   function nextclick(){
     setcorrect(true)
-    setcount((prev) => prev + 1)
+    setcount(count+ 1)
   }
 console.log("the load  value is here",load)
   return (
     <>
-    {load===true? <BasicExample/>:<div>
+  
         
         
       <div>Questions:</div>
@@ -85,7 +88,7 @@ console.log("the load  value is here",load)
         </>
       ) : (""
       )}
-        </div>}
+      
 
       
  
