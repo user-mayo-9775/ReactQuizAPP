@@ -1,7 +1,7 @@
 import './App.css';
 import { Link } from 'react-router-dom';
 import quizImage from '../src/img/Quiz.jpg';
-import Button from 'react-bootstrap/Button';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -39,7 +39,7 @@ function App() {
             src="https://i.gifer.com/6HY.gif"
           />
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">General Knowledge</h2>
-          <p class="text-gray-500">Some general Questions</p>
+          <Link to='/GeographyQuestion'>Start</Link>
         </div>
       </div>
       <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
@@ -51,7 +51,7 @@ function App() {
           />
         
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Science & Nature</h2>
-          <p class="text-gray-500">About the science and the nature</p>
+          <Link to='/GeographyQuestion'>Start</Link>
         </div>
       </div>
      
@@ -63,7 +63,8 @@ function App() {
             src="https://i.gifer.com/7Cvv.gif"
           />
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Geography</h2>
-          <p class="text-gray-500">About the Geographical Knowledge</p>
+         
+          <Link to='/GeographyQuestion'>Start</Link>
         </div>
       </div>
     </div>
@@ -80,7 +81,7 @@ function App() {
             src="https://i.gifer.com/pXp.gif"
           />
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Sports</h2>
-          <p class="text-gray-500"> About the Sports</p>
+          <Link to="/SportQuestion">Start</Link>
         </div>
       </div>
       <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
@@ -102,7 +103,7 @@ function App() {
             src="https://i.gifer.com/9lfC.gif"
           />
           <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">Entertainment</h2>
-          <p class="text-gray-500">About the Cartoons</p>
+          <Link to='/GeographyQuestion'>Start</Link>
         </div>
       </div>
     </div>

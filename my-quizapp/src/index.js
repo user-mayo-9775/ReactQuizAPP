@@ -3,8 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';  // Import ReactDOM
 import {Route,Routes,BrowserRouter} from "react-router-dom"
 import App from './App';
-import Questions from './Components/Question';
-import TotalProgress from './Components/TotalResult';
+import CarQuestions from './Components/CarQuestion';
+import SportQuestions from './Components/Sport';
+import GeographyQuestions from './Components/Geography';
+import GeneralQuestions from './Components/GeneralQuestion';
+import NatureQuestions from './Components/NatureQuestion';
+import EntertainmentQuestions from './Components/Entertainment';
 
 
 
@@ -15,7 +19,12 @@ root.render(
     <BrowserRouter>
 <Routes>
   <Route path='/' element={  <App />}/>
-  <Route path='/Question' element={<Questions/>}/>
+  <Route path='/Question' element={<CarQuestions/>}/>
+  <Route path='/SportQuestion' element={<SportQuestions/>}/>
+  <Route path='/GeographyQuestion' element={<GeographyQuestions/>}/>
+  <Route path='/GeographyQuestion' element={<GeneralQuestions/>}/>
+  <Route path='/GeographyQuestion' element={<NatureQuestions/>}/>
+  <Route path='/GeographyQuestion' element={<EntertainmentQuestions/>}/>
   {/* <Route path='/TotalResult' element={<TotalProgress/>}/>  */}
 </Routes>
   
