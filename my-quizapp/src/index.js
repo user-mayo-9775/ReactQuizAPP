@@ -22,9 +22,9 @@ root.render(
   <Route path='/Question' element={<CarQuestions/>}/>
   <Route path='/SportQuestion' element={<SportQuestions/>}/>
   <Route path='/GeographyQuestion' element={<GeographyQuestions/>}/>
-  <Route path='/GeographyQuestion' element={<GeneralQuestions/>}/>
-  <Route path='/GeographyQuestion' element={<NatureQuestions/>}/>
-  <Route path='/GeographyQuestion' element={<EntertainmentQuestions/>}/>
+  <Route path='/GeneralQuestion' element={<GeneralQuestions/>}/>
+  <Route path='/NatureQuestion' element={<NatureQuestions/>}/>
+  <Route path='/EntertainmentQuestion' element={<EntertainmentQuestions/>}/>
   {/* <Route path='/TotalResult' element={<TotalProgress/>}/>  */}
 </Routes>
   
