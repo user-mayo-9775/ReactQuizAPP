@@ -6,6 +6,7 @@ function CarQuestions() {
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
+  const[timer,settimer]=useState(30)
 
   const url = 'https://opentdb.com/api.php?amount=10&category=28&difficulty=medium&type=multiple';
 
@@ -21,6 +22,8 @@ function CarQuestions() {
     
   }
 }
+
+
 
   useEffect(() => {
     fetchbook();
@@ -49,14 +52,30 @@ if(correct){
 }
 }
  
+
+  if(bookq.length>9){
+    setTimeout(() => {
+      settimer(timer-1)
+     
+      if(timer===0){
+       setcount(count+1)
+       settimer(30)
+      }
+      
+    },1000);
+    
+  }
   function nextclick(){
     setcorrect(true)
     setcount(count+ 1)
+ 
+    
   }
 
   return (
     <>
       <div>Questions:</div>
+      <div>{timer}</div>
       
       {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer}/>:"" }
       <span>
