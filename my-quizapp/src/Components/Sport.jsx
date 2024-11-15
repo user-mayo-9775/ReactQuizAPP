@@ -6,11 +6,11 @@ function SportQuestions() {
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
-
+  const [loading, setloading] = useState(false)
   const url = 'https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=multiple';
 
   async function fetchbook() {
-    
+    setloading(true)
       const bookurl = await fetch(url);
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
@@ -18,7 +18,7 @@ function SportQuestions() {
         setallquestion(data.results);
       } else {
         console.error("No results found in fetched data.");
-    
+    setloading(false)
   }
 }
 
@@ -53,7 +53,13 @@ if(correct){
     setcorrect(true)
     setcount(count + 1)
   }
-
+  if (loading) {
+    return (
+    <div className='sportloader'>
+      <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWNsc3FzYWRrOHd3YTcyZWV2bTJ2ODh2cDBtZGY1YnVrNGNwZ2U2eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WvuTFk2IN7jxoLVDkP/giphy.gif" />
+    </div>
+    )
+  }
   return (
     <>
       <div>Questions:</div>

@@ -6,11 +6,11 @@ function GeneralQuestions() {
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
+  const [loading, setloading] = useState(false)
 
   const url = 'https://opentdb.com/api.php?amount=10&category=9&type=multiple';
-
   async function fetchbook() {
-    
+    setloading(true)
       const bookurl = await fetch(url);
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
@@ -18,7 +18,7 @@ function GeneralQuestions() {
         setallquestion(data.results);
       } else {
         console.error("No results found in fetched data.");
-    
+    setloading(false)
   }
 }
 
@@ -53,7 +53,13 @@ if(correct){
     setcorrect(true)
     setcount(count + 1)
   }
-
+  if (loading) {
+    return (
+    <div className='generalloader'>
+      <img src="https://i.gifer.com/Fudg.gif"/>
+    </div>
+    )
+  }
   return (
     <>
       <div>Questions:</div>

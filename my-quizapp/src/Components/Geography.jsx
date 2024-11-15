@@ -6,11 +6,12 @@ function GeographyQuestions() {
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
+  const [loading, setloading] = useState(false)
 
   const url = 'https://opentdb.com/api.php?amount=10&category=22&type=multiple';
 
   async function fetchbook() {
-    
+    setloading(true)
       const bookurl = await fetch(url);
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
@@ -18,7 +19,7 @@ function GeographyQuestions() {
         setallquestion(data.results);
       } else {
         console.error("No results found in fetched data.");
-    
+    setloading(false)
   }
 }
 
@@ -53,7 +54,14 @@ if(correct){
     setcorrect(true)
     setcount(count + 1)
   }
-
+  if (loading) {
+    return (
+    <div className='geographicloader'>
+      <img src="https://i.gifer.com/WbOi.gif" />
+    </div>
+    )
+  }
+ console.log(loading)
   return (
     <>
       <div>Questions:</div>
@@ -68,20 +76,31 @@ if(correct){
         <>
           <div>Correct{trueanswer}</div>
           <div>Wrong{falseanswer}</div>
-          <div>{bookq[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
-          <div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
-
-          <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+         
+          <div class="container-fluid">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><div>{bookq[count]}</div></h3>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-3 5"></div>
+                <div class="quiz" id="quiz" data-toggle="buttons" className='w-1/2 flex flex-col'>
+                    <label class="element-animation1 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span><div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div></label>
+                    <label class="element-animation2 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span><div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div></label>
+                    <label class="element-animation3 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span><div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div></label>
+                    <label class="element-animation4 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div></label>
+                </div>
+                <button class="button-85" role="button" onClick={() => nextclick()}>
+                {count === 9 ? "Submit" : "Next"}</button>
+                {/* <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button> */}
+            </div>
+        </div>
+    </div>
+</div>
         </>
       ) : (""
       )}
-      
- 
-
-     
     </>
   );
 }

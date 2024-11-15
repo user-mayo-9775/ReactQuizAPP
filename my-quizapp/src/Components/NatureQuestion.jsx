@@ -6,11 +6,12 @@ function NatureQuestions() {
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
+  const [loading , setloading] = useState(false)
 
   const url = 'https://opentdb.com/api.php?amount=10';
 
   async function fetchbook() {
-    
+    setloading(true)
       const bookurl = await fetch(url);
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
@@ -18,7 +19,7 @@ function NatureQuestions() {
         setallquestion(data.results);
       } else {
         console.error("No results found in fetched data.");
-    
+    setloading(false)
   }
 }
 
@@ -53,7 +54,13 @@ if(correct){
     setcorrect(true)
     setcount(count + 1)
   }
-
+  if (loading) {
+    return (
+    <div className='natureloader'>
+      <img src="https://i.gifer.com/9N3S.gif" />
+    </div>
+    )
+  }
   return (
     <>
       <div>Questions:</div>
