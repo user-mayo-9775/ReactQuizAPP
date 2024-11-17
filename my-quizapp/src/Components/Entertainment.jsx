@@ -94,18 +94,16 @@ console.log("the load  value is here")
         <div className='flex justify-center mt-10'>
           <div className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6'>
             <h1 className='text-2xl font-bold text-center mb-6'>Car Quiz</h1>
-            <div className="text-center mb-4">
+
+
+        <div className="text-center mb-4">
           <span className="text-gray-600">Remaining Questions: {10 - count}</span>
         </div>
+
+
           </div>
         </div>
       );
-      
-
-      
- 
-
-     
     </>
   );
 }
