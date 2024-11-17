@@ -1,37 +1,34 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
-import BasicExample from './Loader';
 function EntertainmentQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
-  const[load,setload]=useState(true)
+  const [loading, setloading] = useState(false)
+  const[timer,settimer]=useState(30)
+  let catagery="Enertainment";
 
   const url = 'https://opentdb.com/api.php?amount=10&category=22&type=multiple';
 
   async function fetchbook() {
-    
       const bookurl = await fetch(url);
-      setload(true)
+      setloading(true)
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
-      setload(false)
       if (data.results) {
         setallquestion(data.results);
       } else {
         console.error("No results found in fetched data.");
-    
+        setloading(false)
   }
 }
 
   useEffect(() => {
     fetchbook();
   }, []);
-  if(load){
-    return <BasicExample></BasicExample>
-  }
+  
 
   const bookq = allquestion.map((item) => item.question);
   const correctanswer = allquestion.map((correct) => correct.correct_answer);
@@ -56,19 +53,55 @@ if(correct){
 }
 }
  
-  function nextclick(){
-    setcorrect(true)
-    setcount(count+ 1)
+function nextclick() {
+  if (count < 10) {
+    setcount(count + 1);
+    settimer(30); 
+    setcorrect(true);
   }
-console.log("the load  value is here",load)
+}
+
+useEffect(() => {
+  
+  if ( count < 10) {
+    var clear = setTimeout(() => {
+     
+      if (timer > 0) {
+        settimer(timer - 1);
+      } else {
+        setcount(count + 1);
+        settimer(30); 
+      }
+    }, 1000);
+  }
+
+ 
+  if (bookq.length - count === 0) {
+    clearTimeout(clear);
+    settimer(0); 
+  }
+
+  return () =>{ 
+    clearTimeout(clear);
+  }
+  
+}, [timer, bookq.length, count]);
+  if (loading) {
+    return (
+    <div className='geographicloader'>
+      <img src="https://i.gifer.com/EmY.gif" />
+    </div>
+    )
+  }
+console.log("the load  value is here")
   return (
     <>
   
         
         
       <div>Questions:</div>
-      
-      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer}/>:"" }
+      <div>{timer}</div>
+      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
       <span>
        RemainingQuestion {bookq.length - count}
       </span>

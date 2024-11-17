@@ -24,7 +24,9 @@ root.render(
   <Route path='/GeographyQuestion' element={<GeographyQuestions/>}/>
   <Route path='/GeneralQuestion' element={<GeneralQuestions/>}/>
   <Route path='/NatureQuestion' element={<NatureQuestions/>}/>
+
   <Route path='/FunQuestion' element={<EntertainmentQuestions/>}/>
+  <Route path='/EntertainmentQuestion' element={<EntertainmentQuestions/>}/>
   {/* <Route path='/TotalResult' element={<TotalProgress/>}/>  */}
 </Routes>
   

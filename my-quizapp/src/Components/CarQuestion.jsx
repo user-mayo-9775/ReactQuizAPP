@@ -6,12 +6,14 @@ function CarQuestions() {
   const [correct, setcorrect] = useState(true); 
   const [trueanswer, settrueanswer] = useState(0);
   const [falseanswer, setfalseanswer] = useState(0);
+
   const[timer,settimer]=useState(30)
+  const [loading, setloading] = useState(false)
+  let catagery="Vehical"
 
   const url = 'https://opentdb.com/api.php?amount=10&category=28&difficulty=medium&type=multiple';
-
   async function fetchbook() {
-    
+    setloading(true)
       const bookurl = await fetch(url);
       const data = await bookurl.json();
       console.log("All questions displayed here:", data.results);
@@ -19,7 +21,7 @@ function CarQuestions() {
         setallquestion(data.results);
       } else {
         console.error("No results found in fetched data.");
-    
+    setloading(false)
   }
 }
 
@@ -32,6 +34,7 @@ function CarQuestions() {
   const bookq = allquestion.map((item) => item.question);
   const correctanswer = allquestion.map((correct) => correct.correct_answer);
   const incorrect = allquestion.map((incorrect) => incorrect.incorrect_answers);
+  
 
   console.log("All incorrect questions are here:", incorrect);
 
@@ -53,31 +56,54 @@ if(correct){
 }
  
 
-  if(bookq.length>9){
-    setTimeout(() => {
-      settimer(timer-1)
-     
-      if(timer===0){
-       setcount(count+1)
-       settimer(30)
-      }
-      
-    },1000);
-    
-  }
-  function nextclick(){
-    setcorrect(true)
-    setcount(count+ 1)
  
-    
+  function nextclick() {
+    if (count < 10) {
+      setcount(count + 1);
+      settimer(30); 
+      setcorrect(true);
+    }
   }
 
+  useEffect(() => {
+    
+    if ( count < 10) {
+      var clear = setTimeout(() => {
+       
+        if (timer > 0) {
+          settimer(timer - 1);
+        } else {
+          setcount(count + 1);
+          settimer(30); 
+        }
+      }, 1000);
+    }
+
+   
+    if (bookq.length - count === 0) {
+      clearTimeout(clear);
+      settimer(0); 
+    }
+
+    return () =>{ 
+      clearTimeout(clear);
+    }
+    
+  }, [timer, bookq.length, count]);
+ 
+  if (loading) {
+    return (
+    <div className='carloader'>
+      <img src="https://i.gifer.com/VWB.gif" />
+    </div>
+    )
+  }
   return (
     <>
       <div>Questions:</div>
       <div>{timer}</div>
       
-      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer}/>:"" }
+      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
       <span>
        RemainingQuestion {bookq.length - count}
       </span>
