@@ -349,6 +349,16 @@ label .glyphicon {
   font-size: 18px;
   margin: 10px 0;
 }
+#nav1 :nth-child(1){
+  font-size: 30px ;
+  padding: 2px 2px;
+  color: yellow;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+nav1 :nth-child(1):hover{
+  color: white;
+}
 #miancard{
   position: relative;
   height: 500px;
