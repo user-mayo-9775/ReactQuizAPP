@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import quizImage from "../img/Quizbackground2.jpg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 
 function RecentActivity(){
 const[allativitiy,setactivity]=useState([])

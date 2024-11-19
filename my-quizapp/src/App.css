@@ -8,7 +8,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: black;
 }
 .header {
     font-size: 35px;
@@ -21,19 +21,17 @@ body {
     color: transparent; /* Make text color transparent to show the gradient */
 }
 .content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 10px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 10px 20px;
-    width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid rgb(99, 102, 241);
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 .content:hover{
     transform: scale(1.05);
@@ -338,4 +336,144 @@ label .glyphicon {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+#nav1{
+  display: flex;
+  justify-content: space-between;
+  border:1px solid yellow ;
+  border-radius: 20px;
+  padding: 6px 5px;
+  background-color: black;
+  text-align: center;
+  align-items: center;
+  font-size: 18px;
+  margin: 10px 0;
+}
+#nav1 :nth-child(1){
+  font-size: 30px ;
+  padding: 2px 2px;
+  color: yellow;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+nav1 :nth-child(1):hover{
+  color: white;
+}
+#miancard{
+  position: relative;
+  height: 500px;
+  width: 900px;
+  top: 80px;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+}
+#timer{
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  font-weight: bolder;
+  padding: 15px 30px;
+  background-color: black;
+  border: 1px solid yellow;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+#h1Q{
+  font-family: 'Times New Roman', Times, serif;
+}
+#RemainingQuestion{
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  font-weight: bolder;
+  padding:0 30px;
+  background-color: black;
+  border: 1px solid yellow;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+#question{
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
+  text-align: start;
+  color: #49548b ;
+}
+#Correct{
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  font-weight: bolder;
+  padding: 15px 30px;
+  background-color: black;
+  border: 1px solid yellow;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  text-align: center;
+}
+#Wrong{
+  color: red;
+}
+#button{
+  color: white;
+  border: 1px solid yellow;
+  border-radius: 30px;
+  background-color: black;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 8px 25px;
+  text-align: end;
+  transition: all 0.9s ease;
+}
+#button:hover{
+  background-color: yellow ;
+  color: black;
+}
+#question{
+  height: 150px;
+  width: 250px;
+  border: 1px solid yellow;
+  position: relative;
+  top: 20px;
+  border-radius: 30px;
+  color: white;
+  flex-wrap: wrap;
+  overflow: hidden;
+  text-align: center;
+  align-items: center;
+  background-color: black;
+}
+#options{
+  text-align: start;
+  position: relative;
+  top: 20px;
+  height: 150px;
+  width: 200px;
+}
+#options .option{
+  padding: 2px 30px;
+  border-radius: 30px;
+  border: 1px solid yellow;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 300;
+  margin: 7px;
+  text-align: start;
+  background-color: black;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+#options .option:hover{
+  background-color: yellow;
+  color: black;
+}
+#bottom{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 100px;
+  text-align: center;
+  align-items: center;
 }

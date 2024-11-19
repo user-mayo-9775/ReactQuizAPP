@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
+import quizImage from "../img/Quizbackground2.jpg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 function GeographyQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
@@ -91,47 +94,58 @@ useEffect(() => {
     )
   }
  console.log(loading)
-  return (
-    <>
-      <div>Questions:</div>
-      <div>{timer}</div>
+ return (
+  <>
+  <div id='miancard' className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6' style={{
+              backgroundImage: `url(${quizImage})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+  }}>
+    <div id='nav1' >
+      <i>Off<FontAwesomeIcon icon="fa-solid fa-power-off" /></i>
+    <i>Level:01</i>
+    <i>Hints<FontAwesomeIcon icon="fa-solid fa-face-smile-wink" /></i>
+    </div>
+  <div id='navdown' className='flex justify-between '>    
       {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-      <span>
-       RemainingQuestion {bookq.length - count}
+      <div id='Correct'>icon {trueanswer}</div>
+      <span id='RemainingQuestion'>
+      <i>Questions: <br /> <span>{bookq.length - count}-10</span></i>
       </span>
-      
+      <div id='timer'>00:{timer}</div>
+  </div>    
       {allquestion.length > 0 && count < 10 ? (
 
         <>
-          <div>Correct{trueanswer}</div>
-          <div>Wrong{falseanswer}</div>
-         
-          <div class="container-fluid">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><div>{bookq[count]}</div></h3>
-            </div>
-            <div class="modal-body">
-                <div class="col-xs-3 5"></div>
-                <div class="quiz" id="quiz" data-toggle="buttons" className='w-1/2 flex flex-col'>
-                    <label class="element-animation1 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span><div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div></label>
-                    <label class="element-animation2 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span><div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div></label>
-                    <label class="element-animation3 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span><div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div></label>
-                    <label class="element-animation4 btn btn-lg btn-danger btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div></label>
-                </div>
-                <button class="button-85" role="button" onClick={() => nextclick()}>
-                {count === 9 ? "Submit" : "Next"}</button>
-                {/* <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button> */}
-            </div>
+        <div id='content2' className='flex justify-between'>
+          <div id='options' >
+            <label>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{incorrect[count][0]}</div>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{incorrect[count][1]}</div>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{correctanswer[count]}</div>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{incorrect[count][2]}</div>
+            </label>
+          </div>
+            <div id='question'> Questions <br />{bookq[count+1]}</div>
         </div>
-    </div>
-</div>
+        <div id='bottom'>
+          <div id='Wrong'>Wrong{falseanswer}</div>
+          <button id='button' onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+        </div>
         </>
       ) : (""
       )}
+
+    
+
+  </div>
     </>
-  );
+);
 }
 
 export default GeographyQuestions;
