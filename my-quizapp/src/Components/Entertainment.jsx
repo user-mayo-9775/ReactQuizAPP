@@ -96,32 +96,45 @@ useEffect(() => {
 console.log("the load  value is here")
   return (
     <>
-  
-        
-        
-      <div>Questions:</div>
-      <div>{timer}</div>
+  <div className="flex justify-center mt-10">
+  <h1 className="text-2xl font-bold text-center mb-6">Geography Quiz</h1>
+  <div className="text-center mb-4">
+        <span className="text-gray-600">Remaining Questions:  {bookq.length - count}</span>
+      </div>
+      <div >{timer}</div>
       {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-      <span>
-       RemainingQuestion {bookq.length - count}
-      </span>
+      
       
       {allquestion.length > 0 && count < 10 ? (
 
         <>
-          <div>Correct{trueanswer}</div>
-          <div>Wrong{falseanswer}</div>
-          <div>{bookq[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
-          <div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
+         <div className="text-xl font-semibold mb-4">
+            Question {count + 1}
+          </div>
+        
+          <div className="text-lg font-medium mb-6">{bookq[count]}</div>
+          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
+          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
+          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
+          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
 
-          <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+          <div className="mt-6 text-center">
+          <button className="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600 transition" onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+
+          </div>
+          <div className="mt-4 text-center">
+            <span className="text-green-600 font-bold">Correct: {trueanswer}</span> |{" "}
+            <span className="text-red-600 font-bold">Wrong: {falseanswer}</span>
+          </div>
+
         </>
       ) : (""
       )}
       
+  </div>
+        
+        
+     
 
       
  
@@ -132,3 +145,8 @@ console.log("the load  value is here")
 }
 
 export default EntertainmentQuestions;
+
+
+
+
+

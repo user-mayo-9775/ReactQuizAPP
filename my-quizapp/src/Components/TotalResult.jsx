@@ -25,7 +25,7 @@ function TotalProgress({ correctAnswers, incorrectAnswers,catagery }) {
       <div>Skip question: {10 - (correctAnswers + incorrectAnswers)}</div>
       <Link to="/">Back to home</Link>
 
-      {/* Render recent activity for debugging or display */}
+      
    
     </>
   );

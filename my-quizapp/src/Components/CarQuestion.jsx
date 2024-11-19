@@ -100,8 +100,8 @@ if(correct){
   }
   return (
     <>
-      <div>Questions:</div>
-      <div>{timer}</div>
+      {/* <div>Questions:</div>
+      <div></div>
       
       {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
       <span>
@@ -123,7 +123,68 @@ if(correct){
         </>
       ) : (""
       )}
-      
+       */}
+
+
+{bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:    <div class="bg-gray-900 text-white">
+    
+    <div class="bg-black text-yellow-400 py-2 flex justify-between items-center px-4 border-b border-yellow-600">
+        <button class="text-xl"><i></i> correct:{trueanswer}</button>
+        <div class="text-lg font-semibold">Vehical Question: </div>
+        <div class="relative">
+          
+            <i class="fas fa-lightbulb text-xl">incorrect:{falseanswer}</i>
+        </div>
+    </div>
+
+    
+    <div class="grid grid-cols-3 gap-4 border-y border-yellow-600 py-2 text-center text-yellow-400">
+        <div class="text-lg flex items-center justify-center">
+            <i class="fas fa-trophy text-2xl mr-2"></i> <span>0</span>
+        </div>
+        <div class="font-semibold text-lg">Questions <br /> {bookq.length - count}-10</div>
+        <div class="text-lg flex items-center justify-center">
+            <i class="fas fa-clock text-2xl mr-2"></i> <span>{timer}</span>
+        </div>
+    </div>
+
+
+    <div class="p-4">
+        <div class="bg-black p-4 rounded-lg border border-yellow-600">
+            <h2 class="text-lg font-bold mb-4">Question {count+1}:</h2>
+            <p class="text-lg">{bookq[count]}</p>
+        </div>
+    </div>
+
+    {allquestion.length > 0 && count < 10 ? (
+    <div class="space-y-4 px-4">
+        <div onClick={(e) => checkanser(e)} class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
+            <span class="font-semibold">A</span>
+              <span >{incorrect[count][0]}</span>
+        </div>
+        <div onClick={(e) => checkanser(e)} class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
+            <span class="font-semibold">B</span>
+            <span >{incorrect[count][1]}</span>
+        </div>
+        <div  onClick={(e) => checkanser(e)}class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
+            <span class="font-semibold">C</span>
+            <span >{correctanswer[count]}</span>
+        </div>
+        <div onClick={(e) => checkanser(e)} class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
+            <span class="font-semibold">D</span>
+            <span >{incorrect[count][2]}</span>
+        </div>
+        <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+    </div>
+      ) : (""
+      )}
+  
+</div>}
+
+  
+
+
+
  
 
      
