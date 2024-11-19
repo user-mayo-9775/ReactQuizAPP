@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
+import quizImage from "../img/Quizbackground2.jpg";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faClock, faFaceSmileWink, faPowerOff, faTrophy } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 function CarQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
@@ -99,96 +102,61 @@ if(correct){
     )
   }
   return (
-    <>
-      {/* <div>Questions:</div>
-      <div></div>
-      
-      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-      <span>
-       RemainingQuestion {bookq.length - count}
-      </span>
-      
-      {allquestion.length > 0 && count < 10 ? (
-
-        <>
-          <div>Correct{trueanswer}</div>
-          <div>Wrong{falseanswer}</div>
-          <div>{bookq[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
-          <div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
-
-          <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
-        </>
-      ) : (""
-      )}
-       */}
-
-
-{bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:    <div class="bg-gray-900 text-white">
-    
-    <div class="bg-black text-yellow-400 py-2 flex justify-between items-center px-4 border-b border-yellow-600">
-        <button class="text-xl"><i></i> correct:{trueanswer}</button>
-        <div class="text-lg font-semibold">Vehical Question: </div>
-        <div class="relative">
-          
-            <i class="fas fa-lightbulb text-xl">incorrect:{falseanswer}</i>
-        </div>
-    </div>
-
-    
-    <div class="grid grid-cols-3 gap-4 border-y border-yellow-600 py-2 text-center text-yellow-400">
-        <div class="text-lg flex items-center justify-center">
-            <i class="fas fa-trophy text-2xl mr-2"></i> <span>0</span>
-        </div>
-        <div class="font-semibold text-lg">Questions <br /> {bookq.length - count}-10</div>
-        <div class="text-lg flex items-center justify-center">
-            <i class="fas fa-clock text-2xl mr-2"></i> <span>{timer}</span>
-        </div>
-    </div>
-
-
-    <div class="p-4">
-        <div class="bg-black p-4 rounded-lg border border-yellow-600">
-            <h2 class="text-lg font-bold mb-4">Question {count+1}:</h2>
-            <p class="text-lg">{bookq[count]}</p>
-        </div>
-    </div>
-
-    {allquestion.length > 0 && count < 10 ? (
-    <div class="space-y-4 px-4">
-        <div onClick={(e) => checkanser(e)} class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
-            <span class="font-semibold">A</span>
-              <span >{incorrect[count][0]}</span>
-        </div>
-        <div onClick={(e) => checkanser(e)} class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
-            <span class="font-semibold">B</span>
-            <span >{incorrect[count][1]}</span>
-        </div>
-        <div  onClick={(e) => checkanser(e)}class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
-            <span class="font-semibold">C</span>
-            <span >{correctanswer[count]}</span>
-        </div>
-        <div onClick={(e) => checkanser(e)} class="flex items-center justify-between bg-black p-4 rounded-lg border border-yellow-600">
-            <span class="font-semibold">D</span>
-            <span >{incorrect[count][2]}</span>
-        </div>
-        <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
-    </div>
-      ) : (""
-      )}
-  
-</div>}
-
-  
-
-
-
- 
-
+    <section className='bg-black w-[100vw] h-[100vh]'>
      
-    </>
+      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
+   
+      {allquestion.length > 0 && count < 10 ? (
+    <div id='miancard' className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6' style={{
+                backgroundImage: `url(${quizImage})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+    }}>
+      <div id='nav1' >
+      <span class="text-xl"> Correct:{trueanswer}</span>
+        <div class="text-lg font-semibold">Vehical Question: </div>
+            <span class="text-xl">Incorrect:{falseanswer}</span>
+
+      </div>
+    <div id='navdown' className='flex justify-between '>    
+        <div id='Correct'>Sore{trueanswer*10}</div>
+        <span id='RemainingQuestion'>
+        <i>Questions: <br /> <span>{bookq.length - count}-10</span></i>
+        </span>
+        <div id='timer'>00:{timer}</div>
+    </div>    
+      
+  
+          <>
+          <div id='content2' className='flex justify-between'>
+            <div id='options' >
+              <label>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{incorrect[count][0]}</div>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{incorrect[count][1]}</div>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{correctanswer[count]}</div>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{incorrect[count][2]}</div>
+              </label>
+            </div>
+              <div id='question'> Questions <br />{bookq[count+1]}</div>
+          </div>
+          <div id='bottom'>
+          
+            <button id='button' onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+          </div>
+          </>
+          </div>
+        ) : (""
+        )}
+  
+      
+  
+  
+      </section>
   );
 }
 

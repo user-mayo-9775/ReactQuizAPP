@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
+import quizImage from "../img/Quizbackground2.jpg";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 function GeneralQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
@@ -91,35 +94,62 @@ useEffect(() => {
     </div>
     )
   }
-  return (
-    <>
-      <div>Questions:</div>
-      <div>{timer}</div>
-      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-      <span>
-       RemainingQuestion {bookq.length - count}
-      </span>
-      
-      {allquestion.length > 0 && count < 10 ? (
-
-        <>
-          <div>Correct{trueanswer}</div>
-          <div>Wrong{falseanswer}</div>
-          <div>{bookq[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
-          <div onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
-          <div onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
-
-          <button onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
-        </>
-      ) : (""
-      )}
-      
- 
-
+    return (
+    <section className='bg-black w-[100vw] h-[100vh]'>
      
-    </>
+      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
+   
+      {allquestion.length > 0 && count < 10 ? (
+    <div id='miancard' className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6' style={{
+                backgroundImage: `url(${quizImage})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+    }}>
+      <div id='nav1' >
+      <span class="text-xl"> Correct:{trueanswer}</span>
+        <div class="text-lg font-semibold">Vehical Question: </div>
+            <span class="text-xl">Incorrect:{falseanswer}</span>
+
+      </div>
+    <div id='navdown' className='flex justify-between '>    
+        <div id='Correct'>Sore{trueanswer*10}</div>
+        <span id='RemainingQuestion'>
+        <i>Questions: <br /> <span>{bookq.length - count}-10</span></i>
+        </span>
+        <div id='timer'>00:{timer}</div>
+    </div>    
+      
+  
+          <>
+          <div id='content2' className='flex justify-between'>
+            <div id='options' >
+              <label>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{incorrect[count][0]}</div>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{incorrect[count][1]}</div>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{correctanswer[count]}</div>
+              <div className='option' onClick={(e) => checkanser(e)}>
+              <input type="radio" name="option" value="1" />{incorrect[count][2]}</div>
+              </label>
+            </div>
+              <div id='question'> Questions <br />{bookq[count+1]}</div>
+          </div>
+          <div id='bottom'>
+          
+            <button id='button' onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+          </div>
+          </>
+          </div>
+        ) : (""
+        )}
+  
+      
+  
+  
+      </section>
   );
 }
 

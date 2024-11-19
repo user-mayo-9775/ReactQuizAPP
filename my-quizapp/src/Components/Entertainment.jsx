@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
+import quizImage from "../img/Quizbackground2.jpg";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 function EntertainmentQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
@@ -94,55 +97,64 @@ useEffect(() => {
     )
   }
 console.log("the load  value is here")
-  return (
-    <>
-  <div className="flex justify-center mt-10">
-  <h1 className="text-2xl font-bold text-center mb-6">Geography Quiz</h1>
-  <div className="text-center mb-4">
-        <span className="text-gray-600">Remaining Questions:  {bookq.length - count}</span>
-      </div>
-      <div >{timer}</div>
-      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-      
-      
-      {allquestion.length > 0 && count < 10 ? (
+return (
+  <section className='bg-black w-[100vw] h-[100vh]'>
+   
+    {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
+ 
+    {allquestion.length > 0 && count < 10 ? (
+  <div id='miancard' className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6' style={{
+              backgroundImage: `url(${quizImage})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+  }}>
+    <div id='nav1' >
+    <span class="text-xl"> Correct:{trueanswer}</span>
+      <div class="text-lg font-semibold">Vehical Question: </div>
+          <span class="text-xl">Incorrect:{falseanswer}</span>
+
+    </div>
+  <div id='navdown' className='flex justify-between '>    
+      <div id='Correct'>Sore{trueanswer*10}</div>
+      <span id='RemainingQuestion'>
+      <i>Questions: <br /> <span>{bookq.length - count}-10</span></i>
+      </span>
+      <div id='timer'>00:{timer}</div>
+  </div>    
+    
 
         <>
-         <div className="text-xl font-semibold mb-4">
-            Question {count + 1}
+        <div id='content2' className='flex justify-between'>
+          <div id='options' >
+            <label>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{incorrect[count][0]}</div>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{incorrect[count][1]}</div>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{correctanswer[count]}</div>
+            <div className='option' onClick={(e) => checkanser(e)}>
+            <input type="radio" name="option" value="1" />{incorrect[count][2]}</div>
+            </label>
           </div>
+            <div id='question'> Questions <br />{bookq[count+1]}</div>
+        </div>
+        <div id='bottom'>
         
-          <div className="text-lg font-medium mb-6">{bookq[count]}</div>
-          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{incorrect[count][0]}</div>
-          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{incorrect[count][1]}</div>
-          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{correctanswer[count]}</div>
-          <div className='p-3 rounded-lg cursor-pointer border ' onClick={(e) => checkanser(e)}>{incorrect[count][2]}</div>
-
-          <div className="mt-6 text-center">
-          <button className="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600 transition" onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
-
-          </div>
-          <div className="mt-4 text-center">
-            <span className="text-green-600 font-bold">Correct: {trueanswer}</span> |{" "}
-            <span className="text-red-600 font-bold">Wrong: {falseanswer}</span>
-          </div>
-
+          <button id='button' onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
+        </div>
         </>
+        </div>
       ) : (""
       )}
-      
-  </div>
-        
-        
-     
 
-      
- 
+    
 
-     
-    </>
-  );
-}
+
+    </section>
+);
+  }
 
 export default EntertainmentQuestions;
 
