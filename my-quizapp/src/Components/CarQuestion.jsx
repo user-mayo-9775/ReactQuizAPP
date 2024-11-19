@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
 import quizImage from "../img/Quizbackground2.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faFaceSmileWink, faPowerOff, faTrophy } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
+import { faCircleExclamation, faClock, faSquareCheck, faSquareXmark, faTrophy } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 function CarQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
@@ -110,13 +110,13 @@ if(correct){
                 backgroundPosition: "center",
     }}>
       <div id='nav1' >
-        <i><FontAwesomeIcon icon={faPowerOff}/></i>
-      <i>Level:01</i>
-      <i className='text-yellow-300 text-3xl'><span className='text-white text-sm'>Hints</span> <FontAwesomeIcon icon={faFaceSmileWink}/></i>
+        <i className='text-green-500'><FontAwesomeIcon icon={faSquareCheck}/><span className='text-white text-xl'>{trueanswer}</span></i>
+      <i>Car Questions</i>
+      <i><FontAwesomeIcon icon={faSquareXmark}/><span className='text-white text-xl'>{falseanswer}</span></i>
       </div>
     <div id='navdown' className='flex justify-between '>    
         {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-        <div id='Correct'><i className='text-yellow-300 text-3xl'><FontAwesomeIcon icon={faTrophy}/></i> {trueanswer}</div>
+        <div id='Correct'><i className='text-yellow-300 text-3xl'><FontAwesomeIcon icon={faTrophy}/></i></div>
         <span id='RemainingQuestion'>
         <i>Questions: <br /> <span>{bookq.length - count}-10</span></i>
         </span>
@@ -141,7 +141,6 @@ if(correct){
               <div id='question'> Questions <br />{bookq[count+1]}</div>
           </div>
           <div id='bottom'>
-            <div id='Wrong'>Wrong{falseanswer}</div>
             <button id='button' onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
           </div>
           </>
