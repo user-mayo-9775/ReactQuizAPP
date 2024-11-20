@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
 import quizImage from "../img/Quizbackground2.jpg";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation, faClock, faSquareCheck, faSquareXmark, faTrophy } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
 function GeneralQuestions() {
   const [allquestion, setallquestion] = useState([]);
   const [count, setcount] = useState(0);
@@ -94,12 +94,8 @@ useEffect(() => {
     </div>
     )
   }
-    return (
-    <section className='bg-black w-[100vw] h-[100vh]'>
-     
-      {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-   
-      {allquestion.length > 0 && count < 10 ? (
+  return (
+    <>
     <div id='miancard' className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6' style={{
                 backgroundImage: `url(${quizImage})`,
                 backgroundSize: "cover",
@@ -107,20 +103,20 @@ useEffect(() => {
                 backgroundPosition: "center",
     }}>
       <div id='nav1' >
-        <i>Off<FontAwesomeIcon icon="fa-solid fa-power-off" /></i>
-      <i>Level:01</i>
-      <i>Hints<FontAwesomeIcon icon="fa-solid fa-face-smile-wink" /></i>
+        <i className='text-green-500'><FontAwesomeIcon icon={faSquareCheck}/><span className='text-white text-xl'>{trueanswer}</span></i>
+      <i>General Questions</i>
+      <i><FontAwesomeIcon icon={faSquareXmark}/><span className='text-white text-xl'>{falseanswer}</span></i>
       </div>
     <div id='navdown' className='flex justify-between '>    
         {bookq.length-count===0  && count===10? <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery}/>:"" }
-        <div id='Correct'>icon {trueanswer}</div>
+        <div id='Correct'><i className='text-yellow-300 text-3xl'><FontAwesomeIcon icon={faTrophy}/></i></div>
         <span id='RemainingQuestion'>
         <i>Questions: <br /> <span>{bookq.length - count}-10</span></i>
         </span>
         <div id='timer'>00:{timer} <i className='text-yellow-300 text-3xl'><FontAwesomeIcon icon={faClock}/></i></div>
     </div>    
-      
-  
+        {allquestion.length > 0 && count < 10 ? (
+
           <>
           <div id='content2' className='flex justify-between'>
             <div id='options' >
@@ -138,18 +134,16 @@ useEffect(() => {
               <div id='question'> Questions <br />{bookq[count+1]}</div>
           </div>
           <div id='bottom'>
-            <div id='Wrong'>Wrong{falseanswer}</div>
             <button id='button' onClick={() => nextclick()}>{count === 9 ? "Submit" : "Next"}</button>
           </div>
           </>
-          </div>
         ) : (""
         )}
-  
+
       
-  
-  
-      </section>
+
+    </div>
+      </>
   );
 }
 

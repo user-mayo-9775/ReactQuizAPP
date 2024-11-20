@@ -5,8 +5,6 @@ import quizImage2 from "../src/img/Quizimage5.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
-import RecentActivity from "./Components/RecentActivity";
-
 
 function App() {
   const [Loading, setloading] = useState(false);
@@ -201,14 +199,9 @@ function App() {
         </container>
       </div>
 
-      {/* <div className="w-[80vw] h-[50vh] border border-blue-300 mx-auto my-0 rounded-xl">
-        <h1 className="text-lg font-semibold text-stone-950 text-center my-4">
-          Recent Activity
-          <div>
-            <span className="inline-block h-1 w-28 rounded bg-indigo-500 mb-4 text-center"></span>
-          </div>
-        </h1>
-      </div> */}
+      <div className="w-[80vw] h-[50vh] border border-yellow-300 mx-auto my-0 rounded-xl">
+        <h1 id="text">Recent Activity</h1>
+      </div>
 
 {/*            
       {allquestion && allquestion.length > 0 ? (

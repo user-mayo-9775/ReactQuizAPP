@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-import quizImage from "../img/Quizbackground2.jpg";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
-
 function RecentActivity(){
 const[allativitiy,setactivity]=useState([])
-  
+  const[count,setcount]=useState()
    
   const alldata = JSON.parse(localStorage.getItem("recentactivity"));
     useEffect(() => {
@@ -16,7 +12,6 @@ const[allativitiy,setactivity]=useState([])
         setactivity( [...allativitiy, ...alldata]);
       }
     }, []); 
-    console.log("the all locals dat is",alldata)
   
     console.log("the my activiy is here ",allativitiy)
     
@@ -34,7 +29,7 @@ const[allativitiy,setactivity]=useState([])
         </h1>
         <div>
         
-        {alldata.map((item, index) => (
+        {allativitiy.map((item, index) => (
           <div key={index}>
             <p>category:{item.catagery}</p>
             <p>Correct Answers: {item.correctAnswers}</p>
