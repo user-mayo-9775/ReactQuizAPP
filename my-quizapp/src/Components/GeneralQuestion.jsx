@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import TotalProgress from './TotalResult';
+import quizImage1 from "../img/question.jpg";
+
 import quizImage from "../img/Quizbackground2.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleExclamation, faClock, faSquareCheck, faSquareXmark, faTrophy } from '@fortawesome/free-solid-svg-icons';
@@ -96,14 +98,19 @@ useEffect(() => {
     )
   }
   return (
-    <>
-    {bookq.length - count === 0  ? (
-                    <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery} />
-                ) : ""}
+    <div className="w-[100vw] h-[100vh] border-yellow-300 shadow-md border mt-5 mx-4 my-0 rounded-xl parent-container"
+    style={{
+      backgroundImage: `url(${quizImage1})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+    }}
+>
+ 
 
 
 {allquestion.length > 0 && count < 10 ? (
-        <div id='miancard' className='w-full max-w-lg bg-white rounded-lg shadow-lg p-6'
+        <div id='miancard' className='w-[100vw]  bg-black rounded-lg shadow-lg p-6'
             style={{
                 backgroundImage: `url(${quizImage})`,
                 backgroundSize: "cover",
@@ -115,7 +122,7 @@ useEffect(() => {
                     <FontAwesomeIcon icon={faSquareCheck} />
                     <span className='text-white text-xl'>{trueanswer}</span>
                 </i>
-                <i>Car Questions</i>
+                <i>General Questions</i>
                 <i className='text-yellow-300 text-3xl'>
                     <FontAwesomeIcon icon={faSquareXmark} />
                     <span className='text-white'>{falseanswer}</span>
@@ -124,47 +131,55 @@ useEffect(() => {
             <div id='navdown' className='flex justify-between'>
                 <div id='Correct'>
                     <i className='text-yellow-300 text-3xl'><FontAwesomeIcon icon={faTrophy} /></i>
+                    <span>{trueanswer*10}</span>
                 </div>
                 <span id='RemainingQuestion'>
                     <i>Questions: <br /> <span>{bookq.length - count}/10</span></i>
                 </span>
                 <div id='timer'>
-                    00:{timer} <FontAwesomeIcon icon={faClock} />
+                    {timer}s <FontAwesomeIcon icon={faClock} />
                 </div>
             </div>
            
                 <>
                     <div id='content2' className='flex justify-between'>
                         <div id='options'>
-                            <label>
+                            <div className='flex1'>
                                 <div className='option' onClick={(e) => checkanser(e)}>
-                                    <input type="radio" name="option" value="1" />{incorrect[count][0]}
+                                    {incorrect[count][0]}
                                 </div>
                                 <div className='option' onClick={(e) => checkanser(e)}>
-                                    <input type="radio" name="option" value="1" />{incorrect[count][1]}
+                                   {incorrect[count][1]}
+                                </div>
+                                </div>
+
+                                <div className='flex1'>
+                                <div className='option' onClick={(e) => checkanser(e)}>
+                                  {correctanswer[count]}
                                 </div>
                                 <div className='option' onClick={(e) => checkanser(e)}>
-                                    <input type="radio" name="option" value="1" />{correctanswer[count]}
+                                  {incorrect[count][2]}
                                 </div>
-                                <div className='option' onClick={(e) => checkanser(e)}>
-                                    <input type="radio" name="option" value="1" />{incorrect[count][2]}
                                 </div>
-                            </label>
+                            
                         </div>
                         <div id='question'>
                             Questions <br />{bookq[count]}
                         </div>
                     </div>
-                    <div id='bottom'>
+                    <div >
                         <button id='button' onClick={() => nextclick()}>
-                            {count === 9 ? "Submit" : "Next"}
+                            {count === 9 && count>9 ? "Submit" : "Next"}
                         </button>
                     </div>
                 </>
           
         </div>
           ) : ""}
-    </>
+             {bookq.length - count === 0  ? (
+                    <TotalProgress correctAnswers={trueanswer} incorrectAnswers={falseanswer} catagery={catagery} />
+                ) : ""}
+    </div>
 );
 }
 

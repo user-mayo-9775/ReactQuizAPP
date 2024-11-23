@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import quizImage from "../img/Quizbackground2.jpg";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCar } from '@fortawesome/free-solid-svg-icons'; // Example: Import a specific icon you are using
+import "../App.css";
+
+
+
+
 
 function TotalProgress({ correctAnswers, incorrectAnswers,catagery }) {
  
@@ -61,10 +63,12 @@ function TotalProgress({ correctAnswers, incorrectAnswers,catagery }) {
   </div>
 
  
-  <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-center py-2 font-bold rounded-b-lg">
-  <Link to="/">Back to home</Link>
+  <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white text-center py-2 font-bold rounded-lg shadow-md hover:bg-yellow-500">
+  <Link to="/" className="no-underline text-white">
+    Back to Home
+  </Link>
+</div>
 
-  </div>
 </div>   
     </>
   );

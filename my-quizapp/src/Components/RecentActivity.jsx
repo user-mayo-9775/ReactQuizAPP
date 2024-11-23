@@ -1,47 +1,73 @@
 import { useEffect, useState } from "react";
 
-function RecentActivity(){
-const[allativitiy,setactivity]=useState([])
-  
+function RecentActivity() {
+  const [allActivity, setActivity] = useState([]);
+
+  useEffect(() => {
+    
+    const storedData = JSON.parse(localStorage.getItem("recentactivity")) || [];
+    
+
+    setActivity(storedData);
+  }, []);
+
+  const addNewActivity = (newActivity) => {
+
+    const updatedActivities = [...allActivity, newActivity];
+
    
-  const alldata = JSON.parse(localStorage.getItem("recentactivity"));
-    useEffect(() => {
-    
-     
-      if (alldata) {
-    
-        setactivity( [...allativitiy, ...alldata]);
-      }
-    }, []); 
-    console.log("the all locals dat is",alldata)
-  
-    console.log("the my activiy is here ",allativitiy)
-    
+    setActivity(updatedActivities);
 
-    
+   
+    localStorage.setItem("recentactivity", JSON.stringify(updatedActivities));
+  };
 
-    return<>
+  console.log("The activities from localStorage are: ", allActivity);
 
-<div className="w-[72vw] h-[auto] border border-blue-300 mx-auto my-6 rounded-xl">
-        <h1 className='text-lg text-white font-semibold text-stone-950 text-center my-4'>
-          Recent Activity 
-          <div>
-            <span className="inline-block h-1 w-28 rounded bg-indigo-500 mb-4 text-center"></span>
+  return (
+    <>
+ <div className="w-[72vw] h-auto border-4 border-yellow-500 mx-auto my-6 rounded-xl bg-black shadow-lg">
+  <h1 className="text-lg font-semibold text-white text-center my-4">
+    Recent Activity
+    <div>
+      <span className="inline-block h-1 w-28 rounded bg-indigo-500 mb-4 text-center"></span>
+    </div>
+  </h1>
+  <div className="space-y-6 px-6 pb-6">
+    {allActivity
+      .filter((item) => item && typeof item.catagery === 'string') // Ensure item is not null/undefined and has valid data
+      .map((item, index) => {
+        return (
+          <div
+            key={index}
+            className="bg-gray-800 rounded-lg p-4 border-2 border-yellow-400 shadow-md"
+          >
+            <p className="text-white font-medium mb-2">
+              Category: <span className="text-indigo-400">{item.catagery}</span>
+            </p>
+            <p className="text-white mb-1">
+              Correct Answers: <span className="text-green-400">{item.correctAnswers}</span>
+            </p>
+            <p className="text-white mb-3">
+              Incorrect Answers: <span className="text-red-400">{item.incorrectAnswers}</span>
+            </p>
+            <div className="w-full bg-gray-600 h-3 rounded-full overflow-hidden">
+              <div
+                className={`h-full bg-green-500`}
+                style={{ width: `${item.correctAnswers * 10}%` }}
+              ></div>
+            </div>
+            <p className="text-white mt-2 text-sm text-right">
+              {item.correctAnswers * 10}% Progress
+            </p>
           </div>
-        </h1>
-        <div>
-        
-        {alldata.map((item, index) => (
-          <div key={index}>
-            <p className="text-white">category:{item.catagery}</p>
-            <p className="text-white">Correct Answers: {item.correctAnswers}</p>
-            <p className="text-white">Incorrect Answers: {item.incorrectAnswers}</p>
-          </div>
-        ))}
-      </div>
-      </div>
+        );
+      })}
+  </div>
+</div>
+
     </>
-
-
+  );
 }
+
 export default RecentActivity;
