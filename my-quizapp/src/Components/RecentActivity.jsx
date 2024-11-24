@@ -27,15 +27,10 @@ function RecentActivity() {
   return (
     <>
  <div className="w-[72vw] h-auto border-4 border-yellow-500 mx-auto my-6 rounded-xl bg-black shadow-lg">
-  <h1 className="text-lg font-semibold text-white text-center my-4">
-    Recent Activity
-    <div>
-      <span className="inline-block h-1 w-28 rounded bg-indigo-500 mb-4 text-center"></span>
-    </div>
-  </h1>
+ <i className="text1">Recent Activity</i>
   <div className="space-y-6 px-6 pb-6">
     {allActivity
-      .filter((item) => item && typeof item.catagery === 'string') // Ensure item is not null/undefined and has valid data
+      .filter((item) => item && typeof item.catagery === 'string') 
       .map((item, index) => {
         return (
           <div
